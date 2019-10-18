@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoxActions : MonoBehaviour, IDamageable
 {
 
-    private string estatActual;
+    private int estatActual;
     private Vector3 posActual;
     public Material[] material;
     Renderer rend;
@@ -17,51 +17,54 @@ public class BoxActions : MonoBehaviour, IDamageable
         rend = GetComponent<Renderer>();
         rend.enabled = true;
         rend.sharedMaterial = material[0];
-        estatActual = "normal";
+        estatActual = -1;
         rb = GetComponent<Rigidbody>();
     }
 
     public bool EsNormal()
     {
-        return estatActual == "normal";
+        return estatActual == -1;
     }
 
     public void AccioCaixa(int accio, string costat)
     {
-        switch (accio)
-        {
-            case 0:
-                augmentarMida(costat);
-                break;
-            case 1:
-                transformarChiclet(costat);
-                break;
+        if (estatActual == accio || estatActual == -1)
+        { 
+            switch (accio)
+            {
+                case 0:
+                    augmentarMida(costat);
+                    break;
+                case 1:
+                    transformarChiclet(costat);
+                    break;
 
+            }
         }
     }
 
     void transformarChiclet(string costat)
     {
         //Si esta transformar en chiclet, treu el collider i el posa en estat normal
-        if (estatActual == "transformarChiclet")
+        if (estatActual == 1)
         {
-            estatActual = "normal";
+            estatActual = -1;
             rend.sharedMaterial = material[0];
             colliderChiclet.size = new Vector3(0, 0, 0);
         }
         else//Si esta en estat normal, activa el collider d'enganchar i el posa en estat chiclet
         {
-            estatActual = "transformarChiclet";
+            estatActual = 1;
             rend.sharedMaterial = material[2];
             colliderChiclet.size = new Vector3(1, 1, 1);
         }
     }
     public void augmentarMida(string costat)
     {
-        if (estatActual == "augmentarMida")
+        if (estatActual == 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
-            estatActual = "normal";
+            estatActual = -1;
             rend.sharedMaterial = material[0];
             transform.localPosition = posActual;
 
@@ -105,7 +108,7 @@ public class BoxActions : MonoBehaviour, IDamageable
                 transform.localPosition = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
                 transform.localScale = new Vector3(1, 2, 1);
             }
-            estatActual = "augmentarMida";
+            estatActual = 0;
             rend.sharedMaterial = material[1];
         }
     }

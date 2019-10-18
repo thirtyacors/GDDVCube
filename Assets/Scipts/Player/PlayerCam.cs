@@ -7,7 +7,7 @@ public class PlayerCam : MonoBehaviour
 {
     [SerializeField] private float lookSensitivity;
     [SerializeField] private float smoothing;
-
+     
     public Image imatgePoder; 
 
 
@@ -71,8 +71,35 @@ public class PlayerCam : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Alpha1)) CanviarPoder(0);
         if (Input.GetKeyUp(KeyCode.Alpha2)) CanviarPoder(1);
 
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            AugmentarPoderRoda();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) 
+        {
+            DisminuirPoderRoda();
+        }
     }
 
+    private void AugmentarPoderRoda()
+    {
+        poderActual++;
+        if (poderActual > colorsPoders.Length - 1)
+        {
+            poderActual = 0;
+        }
+        CanviarPoder(poderActual);
+    }
+    private void DisminuirPoderRoda()
+    {
+        poderActual--;
+        if (poderActual < 0)
+        {
+            poderActual = colorsPoders.Length - 1;
+        }
+        CanviarPoder(poderActual);
+
+    }
     private void CanviarPoder(int poder)
     {
         poderActual = poder;
