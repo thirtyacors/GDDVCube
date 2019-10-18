@@ -17,8 +17,13 @@ public class BoxActions : MonoBehaviour, IDamageable
         rend = GetComponent<Renderer>();
         rend.enabled = true;
         rend.sharedMaterial = material[0];
-
+        estatActual = "normal";
         rb = GetComponent<Rigidbody>();
+    }
+
+    public bool EsNormal()
+    {
+        return estatActual == "normal";
     }
 
     public void AccioCaixa(int accio, string costat)

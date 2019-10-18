@@ -20,12 +20,14 @@ public class PlayerGrab : MonoBehaviour
         {
             if (collided != null && !child) // si té un fill el deixa anar
             {
-                collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
-                collided.GetComponent<Rigidbody>().useGravity = false;
-                collided.transform.parent = this.transform;
-                collided.transform.localPosition = Vector3.zero;
-
-                child = true;
+                if (collided.GetComponent<BoxActions>().EsNormal())
+                {
+                    collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+                    collided.GetComponent<Rigidbody>().useGravity = false;
+                    collided.transform.parent = this.transform;
+                    collided.transform.localPosition = Vector3.zero;
+                    child = true;
+                }
             }
             else // si no te fill agafa l'objecte
             {

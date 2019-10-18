@@ -1,27 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCam : MonoBehaviour
 {
     [SerializeField] private float lookSensitivity;
     [SerializeField] private float smoothing;
 
+    public Image imatgePoder; 
+
+
     private GameObject player;
     private Vector2 smoothedVelocity;
     private Vector2 courrentLookingPos;
-    
+
+    public Color[] colorsPoders;
+    int poderActual;
+
+
     private void Start() 
     {   
         player = transform.parent.gameObject;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        CanviarPoder(0);
     }
 
     private void Update()
     {
         RotateCamera();
         CheckForShooting();
+        ComprovarCanviPoder();
     }
 
     private void RotateCamera()
@@ -49,10 +60,23 @@ public class PlayerCam : MonoBehaviour
                 IDamageable damageable = whatIHit.collider.GetComponent<IDamageable>();
                 if(damageable != null)
                 {
-                    damageable.AccioCaixa(1, Direccio(whatIHit.transform.InverseTransformDirection(whatIHit.normal))); // el numero depen de la posicio que porta l'arma
+                    damageable.AccioCaixa(poderActual, Direccio(whatIHit.transform.InverseTransformDirection(whatIHit.normal))); // el numero depen de la posicio que porta l'arma
                 }
             }
         }
+    }
+
+    private void ComprovarCanviPoder()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha1)) CanviarPoder(0);
+        if (Input.GetKeyUp(KeyCode.Alpha2)) CanviarPoder(1);
+
+    }
+
+    private void CanviarPoder(int poder)
+    {
+        poderActual = poder;
+        imatgePoder.color = colorsPoders[poder];
     }
 
     public string Direccio(Vector3 dir)
