@@ -57,10 +57,10 @@ public class PlayerCam : MonoBehaviour
             RaycastHit whatIHit;
             if(Physics.Raycast(transform.position, transform.forward, out whatIHit,  Mathf.Infinity))
             {
-                IDamageable damageable = whatIHit.collider.GetComponent<IDamageable>();
+                BoxActions damageable = whatIHit.collider.GetComponent<BoxActions>();
                 if(damageable != null)
                 {
-                    damageable.AccioCaixa(poderActual, Direccio(whatIHit.transform.InverseTransformDirection(whatIHit.normal))); // el numero depen de la posicio que porta l'arma
+                    damageable.AccioCaixa(poderActual, whatIHit.transform.InverseTransformDirection(whatIHit.normal)); // el numero depen de la posicio que porta l'arma
                 }
             }
         }
@@ -70,6 +70,7 @@ public class PlayerCam : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Alpha1)) CanviarPoder(0);
         if (Input.GetKeyUp(KeyCode.Alpha2)) CanviarPoder(1);
+        if (Input.GetKeyUp(KeyCode.Alpha3)) CanviarPoder(2);
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -104,23 +105,5 @@ public class PlayerCam : MonoBehaviour
     {
         poderActual = poder;
         imatgePoder.color = colorsPoders[poder];
-    }
-
-    public string Direccio(Vector3 dir)
-    {
-        string direccio = "ERROR?";
-        if ((int)dir.x == 1) direccio = "EST";
-
-        else if ((int)dir.x == -1) direccio = "OEST";
-
-        else if ((int)dir.y == 1) direccio = "AMUNT";
-
-        else if ((int)dir.y == -1) direccio = "ABAIX";
-
-        else if ((int)dir.z == 1) direccio = "NORD";
-
-        else if ((int)dir.z == -1) direccio = "SUD";
-
-        return direccio;
     }
 }

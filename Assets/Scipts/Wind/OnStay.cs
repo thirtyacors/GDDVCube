@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class OnStay : MonoBehaviour
 {
+    public Vector3 direccioVent = new Vector3(0, 0, 0);
+    public float forca = 2;
+
     private void OnTriggerStay(Collider obj)
     {
         if (obj.tag == "Grabable")
         {
-            obj.transform.Translate(Vector3.forward * 5 * Time.deltaTime);
+            obj.transform.Translate(direccioVent * forca * Time.deltaTime);
         }
         if (obj.tag == "Player")
         {
-            obj.transform.Translate(Vector3.forward * 5 * Time.deltaTime);
-            obj.transform.position += Vector3.forward * 5 * Time.deltaTime;
+            obj.transform.Translate(direccioVent * forca * Time.deltaTime);
+            obj.transform.position += direccioVent * forca * Time.deltaTime;
         }
     }
 }
