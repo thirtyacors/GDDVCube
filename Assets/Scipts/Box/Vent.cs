@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnStay : MonoBehaviour
+public class Vent : MonoBehaviour
 {
     public Vector3 direccioVent = new Vector3(0, 0, 0);
     public float forca = 2;

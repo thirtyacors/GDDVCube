@@ -63,7 +63,7 @@ public class BoxActions : MonoBehaviour
             estatActual = 2;
             rend.sharedMaterial = material[3];
             colliderVent.gameObject.SetActive(true);
-            colliderVent.gameObject.GetComponent<OnStay>().direccioVent = dir;
+            colliderVent.gameObject.GetComponent<Vent>().direccioVent = dir;
 
             Debug.Log(costat);
             if (costat == "OEST")

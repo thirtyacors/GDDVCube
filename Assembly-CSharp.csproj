@@ -63,15 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scipts\Box\BoxActions.cs" />
+    <Compile Include="Assets\Scipts\Box\Vent.cs" />
     <Compile Include="Assets\Scipts\DoorTest.cs" />
-    <Compile Include="Assets\Scipts\Enemy\EnemyHealth.cs" />
-    <Compile Include="Assets\Scipts\Enemy\EnemyStats.cs" />
-    <Compile Include="Assets\Scipts\Interfaces\IDamageable.cs" />
     <Compile Include="Assets\Scipts\Player\PlayerCam.cs" />
     <Compile Include="Assets\Scipts\Player\PlayerGrab.cs" />
     <Compile Include="Assets\Scipts\Player\PlayerMovementController.cs" />
     <Compile Include="Assets\Scipts\TriggerTest.cs" />
-    <Compile Include="Assets\Scipts\Wind\OnStay.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Toni/Documents/GDDV_motors_game-master/GDDVCube/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
