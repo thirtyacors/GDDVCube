@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":false,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":42.461605072021487,"y":43.10807418823242,"z":21.778100967407228},"rotation":{"x":0.3388616442680359,"y":-0.30680805444717409,"z":0.11782938241958618,"w":0.8816916346549988},"size":10.99062728881836,"orthographic":false}
-=======
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":0.22144317626953126,"y":-0.22205734252929688,"z":-5.281118392944336},"rotation":{"x":0.19990624487400056,"y":0.6232245564460754,"z":-0.16906744241714478,"w":0.73692387342453},"size":33.0579833984375,"orthographic":false}
->>>>>>> 4ea156c966834707fa25d2386544fc9a80ccee58
-=======
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":0.22144317626953126,"y":-0.22205734252929688,"z":-5.281118392944336},"rotation":{"x":0.19990624487400056,"y":0.6232245564460754,"z":-0.16906744241714478,"w":0.73692387342453},"size":33.0579833984375,"orthographic":false}
->>>>>>> 4ea156c966834707fa25d2386544fc9a80ccee58
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":42.0,"y":34.94602584838867,"z":30.0},"rotation":{"x":-0.1408967822790146,"y":0.8439614176750183,"z":-0.26885324716567995,"w":-0.44227832555770876},"size":5.553813457489014,"orthographic":false}

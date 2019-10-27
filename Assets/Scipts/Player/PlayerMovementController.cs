@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Script que controla el moviment i salt del personatge
+
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private float speed;
@@ -12,7 +14,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Start()
     {
-        
         rb = GetComponent<Rigidbody>();
     }
     
@@ -27,7 +28,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         Move();
     }
-
+    
+    //Es mou en la direccio entrada per Input
     private void Move()
     {
         float hAxis = Input.GetAxisRaw("Horizontal");
@@ -40,6 +42,7 @@ public class PlayerMovementController : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
+    //Salta si esta tocant a terra
     private void Jump()
     {
 
@@ -52,6 +55,7 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
+    //Comprova si esta tocant el terra
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, raycastDistance);

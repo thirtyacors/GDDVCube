@@ -5,123 +5,134 @@ using UnityEngine;
 public class BoxActions : MonoBehaviour
 {
 
+    const int NORMAL = -1, TERRA = 0, CHICLET = 1, VENT=2; 
+
     private int estatActual;
+
     private Vector3 posActual;
-    public Material[] material;
+    [SerializeField] Material[] material;
     Renderer rend;
     Rigidbody rb;
+
     //Collider que detectera si s'ha d enganchar un cub
-    public BoxCollider colliderChiclet;
-    public BoxCollider colliderVent;
+    [SerializeField] BoxCollider colliderChiclet;
+    //Collider per empuchar
+    [SerializeField] BoxCollider colliderVent;
+
+    private bool agafat;
 
     private void Start()
     {
         rend = GetComponent<Renderer>();
-        rend.enabled = true;
+
         rend.sharedMaterial = material[0];
-        estatActual = -1;
+        estatActual = NORMAL;
         rb = GetComponent<Rigidbody>();
+        agafat = false;
     }
 
-    public bool EsNormal()
-    {
-        return estatActual == -1;
-    }
+    public bool EsNormal(){return estatActual == NORMAL;}
+
+    public void Agafar(bool agafar) {agafat = agafar;}
+
+    public bool EstaAgafat() { return agafat;}
 
     public void AccioCaixa(int accio, Vector3 direccio)
     {
         string costat = Direccio(direccio);
-        if (estatActual == accio || estatActual == -1)
-        { 
+        if (estatActual == accio || estatActual == NORMAL)
+        {
             switch (accio)
             {
-                case 0:
-                    augmentarMida(costat);
+                case TERRA:
+                    AugmentarMida(costat);
                     break;
-                case 1:
-                    transformarChiclet(costat);
+                case CHICLET:
+                    TransformarChiclet(costat);
                     break;
-                case 2:
-                    aplicarVent(costat, direccio);
+                case VENT:
+                    AplicarVent(costat, direccio);
                     break;
-
             }
         }
     }
 
-    void aplicarVent(string costat, Vector3 dir)
+    void CanviarEstat(int estat)
+    {
+        estatActual = estat;
+        rend.sharedMaterial = material[estat+1];
+    }
+    
+    //------------------------------------------------------VENT-------------------------------------------------
+    void AplicarVent(string costat, Vector3 dir)
     {
         //Si esta transformar en vent, treu el collider i el posa en estat normal
-        if (estatActual == 2)
+        if (estatActual != NORMAL)
         {
-            estatActual = -1;
-            rend.sharedMaterial = material[0];
             colliderVent.gameObject.SetActive(false);
+            CanviarEstat(NORMAL);
         }
         else//Si esta en estat normal, activa el collider de vent i li passa la direccio per parametre. Mou al collider al costat corresponent
         {
-            estatActual = 2;
-            rend.sharedMaterial = material[3];
+            CanviarEstat(VENT);
             colliderVent.gameObject.SetActive(true);
             colliderVent.gameObject.GetComponent<Vent>().direccioVent = dir;
 
-            Debug.Log(costat);
             if (costat == "OEST")
             {
-                colliderVent.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
             }
             else if (costat == "EST")
             {
-                colliderVent.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
             else if (costat == "SUD")
             {
-                colliderVent.gameObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 90, 0);
 
             }
             else if (costat == "NORD")
             {
-                colliderVent.gameObject.transform.rotation = Quaternion.Euler(0, 270, 0);
+                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 270, 0);
             }
             else if (costat == "AMUNT")
             {
-                colliderVent.gameObject.transform.rotation = Quaternion.Euler(0, 0, 90);
+                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 90);
             }
             else if (costat == "ABAIX")
             {
-                colliderVent.gameObject.transform.rotation = Quaternion.Euler(0, 0, -90);
+                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
             }
         }
     }
-
-    void transformarChiclet(string costat)
+    //------------------------------------------------------CHICLET-------------------------------------------------
+    void TransformarChiclet(string costat)
     {
         //Si esta transformar en chiclet, treu el collider i el posa en estat normal
-        if (estatActual == 1)
+        if (estatActual != NORMAL)
         {
-            estatActual = -1;
-            rend.sharedMaterial = material[0];
             colliderChiclet.size = new Vector3(0, 0, 0);
+            CanviarEstat(NORMAL);
         }
         else//Si esta en estat normal, activa el collider d'enganchar i el posa en estat chiclet
         {
-            estatActual = 1;
-            rend.sharedMaterial = material[2];
             colliderChiclet.size = new Vector3(1, 1, 1);
+            CanviarEstat(CHICLET);
         }
     }
-    public void augmentarMida(string costat)
+
+    //------------------------------------------------------TERRA-------------------------------------------------
+    public void AugmentarMida(string costat)
     {
-        if (estatActual == 0)
+        if (estatActual != NORMAL)
         {
             transform.localScale = new Vector3(1, 1, 1);
-            estatActual = -1;
-            rend.sharedMaterial = material[0];
             transform.localPosition = posActual;
-
+            CanviarEstat(NORMAL);
         }
         else
         {
+            CanviarEstat(TERRA);
             posActual = transform.localPosition;
             if (costat == "OEST")
             {
@@ -159,14 +170,12 @@ public class BoxActions : MonoBehaviour
                 transform.localPosition = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
                 transform.localScale = new Vector3(1, 2, 1);
             }
-            estatActual = 0;
-            rend.sharedMaterial = material[1];
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Chiclet" && estatActual == 1)
+        if (other.gameObject.tag == "Chiclet")
         {
             other.transform.parent.transform.parent = this.transform;
             other.transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;

@@ -18,23 +18,28 @@ public class PlayerGrab : MonoBehaviour
     {
         if (Input.GetKeyDown("f"))
         {
-            if (collided != null && !child) // si té un fill el deixa anar
+            if (!child) 
             {
-                if (collided.GetComponent<BoxActions>().EsNormal())
+                if (collided != null  && collided.GetComponent<BoxActions>().EsNormal())
                 {
                     collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
                     collided.GetComponent<Rigidbody>().useGravity = false;
                     collided.transform.parent = this.transform;
                     collided.transform.localPosition = Vector3.zero;
+                    collided.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+                    collided.GetComponent<BoxActions>().Agafar(true);
                     child = true;
                 }
             }
-            else // si no te fill agafa l'objecte
+            else // si té un fill el deixa anar
             {
                 collided = this.gameObject.transform.GetChild(0).gameObject;
                 collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 collided.GetComponent<Rigidbody>().useGravity = true;
                 collided.transform.parent = null;
+
+                collided.GetComponent<BoxActions>().Agafar(true);
 
                 child = false;
             }
@@ -54,7 +59,6 @@ public class PlayerGrab : MonoBehaviour
     private void OnTriggerExit(Collider collider)
     {
         collided = null;
-        child = false;
     }
     
 }

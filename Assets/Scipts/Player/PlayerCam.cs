@@ -7,17 +7,16 @@ public class PlayerCam : MonoBehaviour
 {
     [SerializeField] private float lookSensitivity;
     [SerializeField] private float smoothing;
-     
-    public Image imatgePoder; 
+
+    [SerializeField] Image imatgePoder;
+    [SerializeField] Color[] colorsPoders;
 
 
-    private GameObject player;
-    private Vector2 smoothedVelocity;
-    private Vector2 courrentLookingPos;
+    GameObject player;
+    Vector2 smoothedVelocity;
+    Vector2 courrentLookingPos;
 
-    public Color[] colorsPoders;
     int poderActual;
-
 
     private void Start() 
     {   
@@ -50,6 +49,7 @@ public class PlayerCam : MonoBehaviour
         player.transform.localRotation = Quaternion.AngleAxis(courrentLookingPos.x, player.transform.up);
 
     }
+    //Comprova si dispara a un cub
     private void CheckForShooting()
     {
         if(Input.GetMouseButtonDown(0))
@@ -60,7 +60,8 @@ public class PlayerCam : MonoBehaviour
                 BoxActions damageable = whatIHit.collider.GetComponent<BoxActions>();
                 if(damageable != null)
                 {
-                    damageable.AccioCaixa(poderActual, whatIHit.transform.InverseTransformDirection(whatIHit.normal)); // el numero depen de la posicio que porta l'arma
+                    if(!damageable.EstaAgafat())
+                        damageable.AccioCaixa(poderActual, whatIHit.transform.InverseTransformDirection(whatIHit.normal)); // el numero depen de la posicio que porta l'arma
                 }
             }
         }
@@ -68,9 +69,12 @@ public class PlayerCam : MonoBehaviour
 
     private void ComprovarCanviPoder()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha1)) CanviarPoder(0);
-        if (Input.GetKeyUp(KeyCode.Alpha2)) CanviarPoder(1);
-        if (Input.GetKeyUp(KeyCode.Alpha3)) CanviarPoder(2);
+        //Comprova cada tecla num per cada poder a la llista
+        for(int i = 0;i<colorsPoders.Length;i++)
+        {
+            if (Input.GetKeyUp(KeyCode.Alpha1+i)) CanviarPoder(i);
+        }
+
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -81,7 +85,8 @@ public class PlayerCam : MonoBehaviour
             DisminuirPoderRoda();
         }
     }
-
+    
+    //Roda del ratoli
     private void AugmentarPoderRoda()
     {
         poderActual++;
@@ -101,6 +106,8 @@ public class PlayerCam : MonoBehaviour
         CanviarPoder(poderActual);
 
     }
+
+    //Canvia de poder actual
     private void CanviarPoder(int poder)
     {
         poderActual = poder;
