@@ -63,7 +63,7 @@ public class BoxActions : MonoBehaviour
             estatActual = 2;
             rend.sharedMaterial = material[3];
             colliderVent.gameObject.SetActive(true);
-            colliderVent.gameObject.GetComponent<OnStay>().direccioVent = dir;
+            colliderVent.gameObject.GetComponent<Vent>().direccioVent = dir;
 
             Debug.Log(costat);
             if (costat == "OEST")
@@ -166,8 +166,11 @@ public class BoxActions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Chiclet")
+        if (other.gameObject.tag == "Chiclet" && estatActual == 1)
         {
+            other.transform.parent.transform.parent = this.transform;
+            other.transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            other.transform.parent.GetComponent<Rigidbody>().useGravity = false;
             rb.isKinematic = true;
         }
     }
@@ -176,6 +179,9 @@ public class BoxActions : MonoBehaviour
     {
         if (other.gameObject.tag == "Chiclet")
         {
+            other.transform.parent.transform.parent = null;
+            other.transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            other.transform.parent.GetComponent<Rigidbody>().useGravity = true;
             rb.isKinematic = false;
         }
     }

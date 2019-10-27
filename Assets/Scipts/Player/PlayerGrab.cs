@@ -54,6 +54,7 @@ public class PlayerGrab : MonoBehaviour
     private void OnTriggerExit(Collider collider)
     {
         collided = null;
+        child = false;
     }
     
 }
