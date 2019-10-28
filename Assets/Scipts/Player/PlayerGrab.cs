@@ -39,7 +39,7 @@ public class PlayerGrab : MonoBehaviour
                 collided.GetComponent<Rigidbody>().useGravity = true;
                 collided.transform.parent = null;
 
-                collided.GetComponent<BoxActions>().Agafar(true);
+                collided.GetComponent<BoxActions>().Agafar(false);
 
                 child = false;
             }
