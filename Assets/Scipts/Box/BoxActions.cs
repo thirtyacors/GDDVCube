@@ -72,7 +72,7 @@ public class BoxActions : MonoBehaviour
             colliderVent.gameObject.SetActive(false);
             CanviarEstat(NORMAL);
         }
-        else//Si esta en estat normal, activa el collider de vent i li passa la direccio per parametre. Mou al collider al costat corresponent
+        else //Si esta en estat normal, activa el collider de vent i li passa la direccio per parametre. Mou al collider al costat corresponent
         {
             CanviarEstat(VENT);
             colliderVent.gameObject.SetActive(true);
