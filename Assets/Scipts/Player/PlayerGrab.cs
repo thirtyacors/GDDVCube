@@ -59,6 +59,8 @@ public class PlayerGrab : MonoBehaviour
     private void OnTriggerExit(Collider collider)
     {
         collided = null;
+        collider.GetComponent<BoxActions>().Agafar(false);
+        child = false;
     }
     
 }

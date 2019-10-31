@@ -175,7 +175,7 @@ public class BoxActions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Chiclet")
+        if (other.gameObject.tag == "Chiclet" && estatActual == CHICLET)
         {
             other.transform.parent.transform.parent = this.transform;
             other.transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -186,7 +186,7 @@ public class BoxActions : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Chiclet")
+        if (other.gameObject.tag == "Chiclet" && !other.transform.parent.GetComponent<BoxActions>().EstaAgafat())
         {
             other.transform.parent.transform.parent = null;
             other.transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
