@@ -9,7 +9,7 @@ public class BoxActions : MonoBehaviour
 
     private int estatActual;
 
-    private Vector3 posActual;
+    private Vector3 posActual, novaPos, scaleActual, nouScale;
     [SerializeField] Material[] material;
     Renderer rend;
     Rigidbody rb;
@@ -19,7 +19,11 @@ public class BoxActions : MonoBehaviour
     //Collider per empuchar
     [SerializeField] BoxCollider colliderVent;
 
-    private bool agafat;
+    [SerializeField] float midaCreixer = 1;
+    [SerializeField] float velocitatCreixer = 8;
+
+    private bool agafat, creixent, decreixent;
+    
 
     private void Start()
     {
@@ -29,6 +33,21 @@ public class BoxActions : MonoBehaviour
         estatActual = NORMAL;
         rb = GetComponent<Rigidbody>();
         agafat = false;
+        creixent = decreixent = false;
+    }
+
+    private void Update()
+    {
+        if (creixent)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, novaPos, Time.deltaTime* velocitatCreixer);
+            transform.localScale = Vector3.Lerp(transform.localScale, nouScale, Time.deltaTime* velocitatCreixer);
+        }
+        else if (decreixent)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, posActual, Time.deltaTime* velocitatCreixer);
+            transform.localScale = Vector3.Lerp(transform.localScale, scaleActual, Time.deltaTime* velocitatCreixer);
+        }
     }
 
     public bool EsNormal(){return estatActual == NORMAL;}
@@ -126,50 +145,56 @@ public class BoxActions : MonoBehaviour
     {
         if (estatActual != NORMAL)
         {
-            transform.localScale = new Vector3(1, 1, 1);
-            transform.localPosition = posActual;
+            print("hola");
             CanviarEstat(NORMAL);
+            creixent = false;
+            decreixent = true;
         }
         else
         {
             CanviarEstat(TERRA);
             posActual = transform.localPosition;
+            scaleActual = transform.localScale;
+
+            decreixent = false;
+
             if (costat == "OEST")
             {
-                float newPos = transform.localPosition.x - (float)0.5;
-                transform.localPosition = new Vector3(newPos, transform.localPosition.y, transform.localPosition.z);
-                transform.localScale = new Vector3(2, 1, 1);
+                float newPos = transform.localPosition.x - (midaCreixer/2);
+                novaPos = new Vector3(newPos, transform.localPosition.y, transform.localPosition.z);
+                nouScale = new Vector3(transform.localScale.x + midaCreixer, transform.localScale.y, transform.localScale.z);
             }
             else if (costat == "EST")
             {
-                float newPos = transform.localPosition.x + (float)0.5;
-                transform.localPosition = new Vector3(newPos, transform.localPosition.y, transform.localPosition.z);
-                transform.localScale = new Vector3(2, 1, 1);
+                float newPos = transform.localPosition.x + (midaCreixer / 2);
+                novaPos = new Vector3(newPos, transform.localPosition.y, transform.localPosition.z);
+                nouScale = new Vector3(transform.localScale.x + midaCreixer, transform.localScale.y, transform.localScale.z);
             }
             else if (costat == "SUD")
             {
-                float newPos = transform.localPosition.z - (float)0.5;
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPos);
-                transform.localScale = new Vector3(1, 1, 2);
+                float newPos = transform.localPosition.z - (midaCreixer / 2);
+                novaPos = new Vector3(transform.localPosition.x, transform.localPosition.y, newPos);
+                nouScale = new Vector3(transform.localScale.x , transform.localScale.y, transform.localScale.z + midaCreixer);
             }
             else if (costat == "NORD")
             {
-                float newPos = transform.localPosition.z + (float)0.5;
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newPos);
-                transform.localScale = new Vector3(1, 1, 2);
+                float newPos = transform.localPosition.z + (midaCreixer / 2);
+                novaPos = new Vector3(transform.localPosition.x, transform.localPosition.y, newPos);
+                nouScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z + midaCreixer);
             }
             else if (costat == "AMUNT")
             {
-                float newPos = transform.localPosition.y - (float)0.5;
-                transform.localPosition = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
-                transform.localScale = new Vector3(1, 2, 1);
+                float newPos = transform.localPosition.y - (midaCreixer / 2);
+                novaPos = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
+                nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z );
             }
             else if (costat == "ABAIX")
             {
-                float newPos = transform.localPosition.y + (float)0.5;
-                transform.localPosition = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
-                transform.localScale = new Vector3(1, 2, 1);
+                float newPos = transform.localPosition.y + (midaCreixer / 2);
+                novaPos = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
+                nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z);
             }
+            creixent = true;
         }
     }
 
