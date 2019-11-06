@@ -21,6 +21,7 @@ public class BoxActions : MonoBehaviour
 
     [SerializeField] float midaCreixer = 1;
     [SerializeField] float velocitatCreixer = 8;
+    [SerializeField] float velocitatDecreixer = 8;
 
     private bool agafat, creixent, decreixent;
     
@@ -42,11 +43,17 @@ public class BoxActions : MonoBehaviour
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, novaPos, Time.deltaTime* velocitatCreixer);
             transform.localScale = Vector3.Lerp(transform.localScale, nouScale, Time.deltaTime* velocitatCreixer);
+            if (transform.localScale == nouScale) creixent = false;
         }
         else if (decreixent)
         {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, posActual, Time.deltaTime* velocitatCreixer);
-            transform.localScale = Vector3.Lerp(transform.localScale, scaleActual, Time.deltaTime* velocitatCreixer);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, posActual, Time.deltaTime* velocitatDecreixer);
+            transform.localScale = Vector3.Lerp(transform.localScale, scaleActual, Time.deltaTime* velocitatDecreixer);
+            if (transform.localScale == scaleActual)
+            {
+                decreixent = false;
+                CanviarEstat(NORMAL);
+            }
         }
     }
 
@@ -145,8 +152,7 @@ public class BoxActions : MonoBehaviour
     {
         if (estatActual != NORMAL)
         {
-            print("hola");
-            CanviarEstat(NORMAL);
+            //CanviarEstat(NORMAL);
             creixent = false;
             decreixent = true;
         }
@@ -184,9 +190,9 @@ public class BoxActions : MonoBehaviour
             }
             else if (costat == "AMUNT")
             {
-                float newPos = transform.localPosition.y - (midaCreixer / 2);
+                float newPos = transform.localPosition.y + (midaCreixer / 2);
                 novaPos = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
-                nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z );
+                nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z);
             }
             else if (costat == "ABAIX")
             {

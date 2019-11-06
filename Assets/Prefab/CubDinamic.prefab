@@ -190,6 +190,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f7fa24f496fae364d9745b31c5fbb786, type: 2}
   colliderChiclet: {fileID: 7269214664510837589}
   colliderVent: {fileID: 283054544}
+  midaCreixer: 1
+  velocitatCreixer: 3
+  velocitatDecreixer: 8
 --- !u!1 &7871297997816848898
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +219,7 @@ Transform:
   m_GameObject: {fileID: 7871297997816848898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6111952506298212462}
   m_RootOrder: 0
