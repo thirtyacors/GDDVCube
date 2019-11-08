@@ -1416,7 +1416,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.9987345, b: 0.995283, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1646,6 +1646,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Porta
       objectReference: {fileID: 0}
+    - target: {fileID: 5134970254319397637, guid: 557edb820d548a94fa2b19518531ec78,
+        type: 3}
+      propertyPath: alcadaObert
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5134970254319397637, guid: 557edb820d548a94fa2b19518531ec78,
+        type: 3}
+      propertyPath: openSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5134970254319397658, guid: 557edb820d548a94fa2b19518531ec78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1715,16 +1725,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.43049
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134970254319397637, guid: 557edb820d548a94fa2b19518531ec78,
-        type: 3}
-      propertyPath: alcadaObert
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5134970254319397637, guid: 557edb820d548a94fa2b19518531ec78,
-        type: 3}
-      propertyPath: openSpeed
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 557edb820d548a94fa2b19518531ec78, type: 3}
