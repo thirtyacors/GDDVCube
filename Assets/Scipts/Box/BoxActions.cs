@@ -102,7 +102,7 @@ public class BoxActions : MonoBehaviour
         {
             CanviarEstat(VENT);
             colliderVent.gameObject.SetActive(true);
-            colliderVent.gameObject.GetComponent<Vent>().direccioVent = new Vector3(0,0,-1);
+            colliderVent.gameObject.GetComponent<Vent>().direccioVent = dir;
 
             if (costat == "OEST")
             {

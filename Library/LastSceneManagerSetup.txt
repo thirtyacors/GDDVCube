@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/NivellCreixer.unity
+- path: Assets/Scenes/NivellVent.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

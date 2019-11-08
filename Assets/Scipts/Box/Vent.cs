@@ -12,13 +12,10 @@ public class Vent : MonoBehaviour
 
     private void OnTriggerStay(Collider obj)
     {
-        if (obj.tag == "Grabable")
+        if (obj.tag == "Grabable" || obj.tag == "Player")
         {
-            obj.transform.Translate(direccioVent * forca * Time.deltaTime);
-        }
-        if (obj.tag == "Player")
-        {
-           obj.transform.Translate(direccioVent * forca * Time.deltaTime);
+            // obj.transform.Translate(direccioVent * forca * Time.deltaTime);
+            obj.GetComponent<Rigidbody>().AddForce(direccioVent*forca, ForceMode.Impulse);
         }
     }
 }
