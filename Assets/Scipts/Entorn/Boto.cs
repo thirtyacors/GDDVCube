@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class Boto : MonoBehaviour
 {
-    [SerializeField]DoorTest porta;
+    public DoorTest[] portes; 
     [SerializeField] bool mantenir; //True si s'ha de mantenir el boto per obrir la porta
 
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player" || other.tag == "Grabable")
-            porta.OpenDoor();
+            for (int i = 0; i < portes.Length; i++)
+            {
+                portes[i].OpenDoor();
+            }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player" || other.tag == "Grabable")
-            if (mantenir) porta.CloseDoor();
+            for (int i = 0; i < portes.Length; i++)
+            {
+                 if (mantenir) portes[i].CloseDoor();
+            }
     }
 }

@@ -63,7 +63,7 @@ public class PlayerGrab : MonoBehaviour
         {
             collided = null;
             collider.GetComponent<BoxActions>().Agafar(false);
-            child = false;
+            if(collider.gameObject.GetComponent<BoxActions>().estatActual == 1)child = false;
         }
     }
     

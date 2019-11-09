@@ -11,6 +11,7 @@ public class DoorTest : MonoBehaviour
     Vector3 closedPosition;
     Vector3 openedPosition;
 
+    public bool Pont;
     [SerializeField] float alcadaObert = 7;
     [SerializeField] float openSpeed = 5;
     private bool open = false;
@@ -19,7 +20,8 @@ public class DoorTest : MonoBehaviour
     {
         door = this.transform;
         closedPosition = door.position;
-        openedPosition = door.position + new Vector3(0,alcadaObert,0);
+        if(Pont)openedPosition = door.position + new Vector3(alcadaObert,0,0);
+        else openedPosition = door.position + new Vector3(0,alcadaObert,0);
     }
     // Update is called once per frame
     void Update()

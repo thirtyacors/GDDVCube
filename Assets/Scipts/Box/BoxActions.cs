@@ -7,7 +7,7 @@ public class BoxActions : MonoBehaviour
 
     const int NORMAL = -1, TERRA = 0, CHICLET = 1, VENT=2; 
 
-    private int estatActual;
+    public int estatActual;
 
     private Vector3 posActual, novaPos, scaleActual, nouScale;
     [SerializeField] Material[] material;
@@ -23,7 +23,7 @@ public class BoxActions : MonoBehaviour
     [SerializeField] float velocitatCreixer = 8;
     [SerializeField] float velocitatDecreixer = 8;
 
-    private bool agafat, creixent, decreixent;
+    private bool agafat, creixent, decreixent, estatic;
     
 
     private void Start()
@@ -35,6 +35,8 @@ public class BoxActions : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         agafat = false;
         creixent = decreixent = false;
+
+        if (rb.isKinematic == true)  estatic = true;
     }
 
     private void Update()
@@ -139,11 +141,13 @@ public class BoxActions : MonoBehaviour
         {
             colliderChiclet.size = new Vector3(0, 0, 0);
             CanviarEstat(NORMAL);
+            if(!estatic) rb.isKinematic = false;
         }
         else//Si esta en estat normal, activa el collider d'enganchar i el posa en estat chiclet
         {
             colliderChiclet.size = new Vector3(1, 1, 1);
             CanviarEstat(CHICLET);
+            if(!estatic) rb.isKinematic = true;
         }
     }
 
@@ -211,7 +215,6 @@ public class BoxActions : MonoBehaviour
             other.transform.parent.transform.parent = this.transform;
             other.transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             other.transform.parent.GetComponent<Rigidbody>().useGravity = false;
-            rb.isKinematic = true;
         }
     }
 
@@ -222,7 +225,6 @@ public class BoxActions : MonoBehaviour
             other.transform.parent.transform.parent = null;
             other.transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             other.transform.parent.GetComponent<Rigidbody>().useGravity = true;
-            rb.isKinematic = false;
         }
     }
 

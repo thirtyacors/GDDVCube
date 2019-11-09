@@ -99,7 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookSensitivity: 2
   smoothing: 2
-  imatgePoder: {fileID: 0}
+  imatgePoder: {fileID: 1568133781083330350, guid: bd8185154dd9ff0448975bd88098c6ef,
+    type: 3}
   colorsPoders:
   - {r: 0.74509805, g: 0.40000004, b: 0.227451, a: 1}
   - {r: 0.9339623, g: 0.383277, b: 0.8115607, a: 1}
