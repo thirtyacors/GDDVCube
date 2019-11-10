@@ -591,7 +591,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3556310239154647125, guid: 20df88e540ec73349a5da4de94ad414e,
         type: 3}
+      propertyPath: portes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556310239154647125, guid: 20df88e540ec73349a5da4de94ad414e,
+        type: 3}
       propertyPath: porta
+      value: 
+      objectReference: {fileID: 1628153910}
+    - target: {fileID: 3556310239154647125, guid: 20df88e540ec73349a5da4de94ad414e,
+        type: 3}
+      propertyPath: portes.Array.data[0]
       value: 
       objectReference: {fileID: 1628153910}
     m_RemovedComponents: []

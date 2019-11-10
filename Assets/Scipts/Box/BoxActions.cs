@@ -18,6 +18,8 @@ public class BoxActions : MonoBehaviour
     [SerializeField] BoxCollider colliderChiclet;
     //Collider per empuchar
     [SerializeField] BoxCollider colliderVent;
+    //Collider per apilar cubs
+    [SerializeField] BoxCollider colliderApilar;
 
     [SerializeField] float midaCreixer = 1;
     [SerializeField] float velocitatCreixer = 8;
