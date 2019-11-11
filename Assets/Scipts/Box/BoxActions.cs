@@ -99,6 +99,7 @@ public class BoxActions : MonoBehaviour
         //Si esta transformar en vent, treu el collider i el posa en estat normal
         if (estatActual != NORMAL)
         {
+            colliderVent.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
             colliderVent.gameObject.SetActive(false);
             CanviarEstat(NORMAL);
         }
@@ -106,6 +107,7 @@ public class BoxActions : MonoBehaviour
         {
             CanviarEstat(VENT);
             colliderVent.gameObject.SetActive(true);
+            colliderVent.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             colliderVent.gameObject.GetComponent<Vent>().direccioVent = dir;
 
             if (costat == "OEST")

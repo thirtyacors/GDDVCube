@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scipts\Box\Apilar.cs" />
     <Compile Include="Assets\Scipts\Box\BoxActions.cs" />
     <Compile Include="Assets\Scipts\Box\Vent.cs" />
     <Compile Include="Assets\Scipts\Entorn\Boto.cs" />

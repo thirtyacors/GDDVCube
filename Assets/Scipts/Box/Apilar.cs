@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Apilar : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collider)
+    private void OnColliderEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Grabable" && !collider.transform.parent.GetComponent<BoxActions>().EstaAgafat())
         {
