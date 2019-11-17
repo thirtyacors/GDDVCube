@@ -1604,6 +1604,11 @@ PrefabInstance:
       propertyPath: portes.Array.data[2]
       value: 
       objectReference: {fileID: 892067608}
+    - target: {fileID: 3556310239154647125, guid: 20df88e540ec73349a5da4de94ad414e,
+        type: 3}
+      propertyPath: mantenir
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20df88e540ec73349a5da4de94ad414e, type: 3}
 --- !u!4 &1085232743 stripped
