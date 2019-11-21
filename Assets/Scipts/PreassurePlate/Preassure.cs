@@ -11,7 +11,7 @@ public class Preassure : MonoBehaviour
     private void OnTriggerEnter(Collider box) {
         if(!activated){
             porta.transform.position += new Vector3(0, 4, 0);
-            pont.transform.position += new Vector3(10, 0, 0);
+            pont.transform.position += new Vector3(12, 0, 0);
             activated = true;
         }
             
