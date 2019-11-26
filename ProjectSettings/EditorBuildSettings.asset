@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Nivell_Chiclet_Vent.unity
+    guid: 1cdd24f6aa27de042aa37212244b09a3
+  - enabled: 1
+    path: Assets/Scenes/Nivell_Creixer.unity
+    guid: d7fa5417e8f7e6e44bf04e70b944152f
+  - enabled: 1
+    path: Assets/Scenes/Nivell_Chiclet.unity
+    guid: 61c057069d00ed142a1819ac7936891a
   m_configObjects: {}

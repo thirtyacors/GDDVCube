@@ -43,6 +43,7 @@ public class BoxActions : MonoBehaviour
 
     private void Update()
     {
+        posActual = transform.localPosition;
         if (creixent)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, novaPos, Time.deltaTime* velocitatCreixer);
@@ -62,6 +63,8 @@ public class BoxActions : MonoBehaviour
     }
 
     public bool EsNormal(){return estatActual == NORMAL;}
+
+    public int EstatActual(){return estatActual;}
 
     public void Agafar(bool agafar) {agafat = agafar;}
 
@@ -143,13 +146,13 @@ public class BoxActions : MonoBehaviour
         //Si esta transformar en chiclet, treu el collider i el posa en estat normal
         if (estatActual != NORMAL)
         {
-            colliderChiclet.size = new Vector3(0, 0, 0);
+            colliderChiclet.isTrigger = false;
             CanviarEstat(NORMAL);
             if(!estatic) rb.isKinematic = false;
         }
         else//Si esta en estat normal, activa el collider d'enganchar i el posa en estat chiclet
         {
-            colliderChiclet.size = new Vector3(1, 1, 1);
+            colliderChiclet.isTrigger = true;
             CanviarEstat(CHICLET);
             if(!estatic) rb.isKinematic = true;
         }
@@ -167,7 +170,6 @@ public class BoxActions : MonoBehaviour
         else
         {
             CanviarEstat(TERRA);
-            posActual = transform.localPosition;
             scaleActual = transform.localScale;
 
             decreixent = false;
@@ -209,26 +211,6 @@ public class BoxActions : MonoBehaviour
                 nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z);
             }
             creixent = true;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Chiclet" && estatActual == CHICLET)
-        {
-            other.transform.parent.transform.parent = this.transform;
-            other.transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            other.transform.parent.GetComponent<Rigidbody>().useGravity = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Chiclet" && !other.transform.parent.GetComponent<BoxActions>().EstaAgafat())
-        {
-            other.transform.parent.transform.parent = null;
-            other.transform.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            other.transform.parent.GetComponent<Rigidbody>().useGravity = true;
         }
     }
 

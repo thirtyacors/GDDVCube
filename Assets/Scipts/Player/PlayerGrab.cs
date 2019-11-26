@@ -24,6 +24,7 @@ public class PlayerGrab : MonoBehaviour
                 {
                     collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
                     collided.GetComponent<Rigidbody>().useGravity = false;
+                    collided.GetComponent<Rigidbody>().isKinematic = true;
                     collided.transform.parent = this.transform;
                     collided.transform.localPosition = Vector3.zero;
                     collided.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -37,6 +38,7 @@ public class PlayerGrab : MonoBehaviour
                 collided = this.gameObject.transform.GetChild(0).gameObject;
                 collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 collided.GetComponent<Rigidbody>().useGravity = true;
+                collided.GetComponent<Rigidbody>().isKinematic = false;
                 collided.transform.parent = null;
                 collided.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
@@ -59,7 +61,7 @@ public class PlayerGrab : MonoBehaviour
     
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.tag == "Grabable")
+        if (collider.gameObject.tag == "Grabable" || collider.gameObject.tag == "CubParet")
         {
             collided = null;
             collider.GetComponent<BoxActions>().Agafar(false);

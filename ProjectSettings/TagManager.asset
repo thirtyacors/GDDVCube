@@ -10,6 +10,7 @@ TagManager:
   - cubito
   - Wind
   - Chiclet
+  - CubParet
   layers:
   - Default
   - TransparentFX
