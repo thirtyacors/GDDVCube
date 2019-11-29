@@ -12,7 +12,24 @@ public class PlayerGrab : MonoBehaviour
         child = false;
         collided = null;
     }
-    
+
+    /*
+     * PER EL PROBLEMA DE COLISIONS PROVAR AIXO:
+     * EN comptes de posarho com a fill del grab que segueixi al grab sense passar a ser fill
+        public Transform toFollow;
+        private Vector3 offset;
+ 
+        void Start()
+        {
+            offset = toFollow.position - transform.position;
+        }
+        void Update()
+        {
+            transform.position = toFollow.position - offset;
+            transform.rotation = toFollow.rotation;
+        }
+     */
+
     // Update is called once per frame
     void Update()
     {
@@ -22,7 +39,7 @@ public class PlayerGrab : MonoBehaviour
             {
                 if (collided != null  && collided.GetComponent<BoxActions>().EsNormal())
                 {
-                    collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+                    collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                     collided.GetComponent<Rigidbody>().useGravity = false;
                     collided.GetComponent<Rigidbody>().isKinematic = true;
                     collided.transform.parent = this.transform;
@@ -36,7 +53,7 @@ public class PlayerGrab : MonoBehaviour
             else // si té un fill el deixa anar
             {
                 collided = this.gameObject.transform.GetChild(0).gameObject;
-                collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 collided.GetComponent<Rigidbody>().useGravity = true;
                 collided.GetComponent<Rigidbody>().isKinematic = false;
                 collided.transform.parent = null;

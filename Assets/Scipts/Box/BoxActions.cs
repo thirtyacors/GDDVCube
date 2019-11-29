@@ -18,8 +18,6 @@ public class BoxActions : MonoBehaviour
     [SerializeField] BoxCollider colliderChiclet;
     //Collider per empuchar
     [SerializeField] BoxCollider colliderVent;
-    //Collider per apilar cubs
-    [SerializeField] BoxCollider colliderApilar;
 
     [SerializeField] float midaCreixer = 1;
     [SerializeField] float velocitatCreixer = 8;
@@ -150,7 +148,7 @@ public class BoxActions : MonoBehaviour
             CanviarEstat(NORMAL);
             if(!estatic) rb.isKinematic = false;
         }
-        else//Si esta en estat normal, activa el collider d'enganchar i el posa en estat chiclet
+        else // Si esta en estat normal, activa el collider d'enganchar i el posa en estat chiclet
         {
             colliderChiclet.isTrigger = true;
             CanviarEstat(CHICLET);
