@@ -9,6 +9,10 @@ public class BoxActions : MonoBehaviour
 
     public int estatActual;
 
+    public bool activarTerra = true;
+    public bool activarChiclet = true;
+    public bool activarVent = true;
+
     private Vector3 posActual, novaPos, scaleActual, nouScale;
     [SerializeField] Material[] material;
     Renderer rend;
@@ -97,118 +101,130 @@ public class BoxActions : MonoBehaviour
     //------------------------------------------------------VENT-------------------------------------------------
     void AplicarVent(string costat, Vector3 dir)
     {
-        //Si esta transformar en vent, treu el collider i el posa en estat normal
-        if (estatActual != NORMAL)
+        if(activarVent)
         {
-            colliderVent.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
-            colliderVent.gameObject.SetActive(false);
-            CanviarEstat(NORMAL);
-        }
-        else //Si esta en estat normal, activa el collider de vent i li passa la direccio per parametre. Mou al collider al costat corresponent
-        {
-            CanviarEstat(VENT);
-            colliderVent.gameObject.SetActive(true);
-            colliderVent.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
-            colliderVent.gameObject.GetComponent<Vent>().direccioVent = dir;
+            //Si esta transformar en vent, treu el collider i el posa en estat normal
+            if (estatActual != NORMAL)
+            {
+                colliderVent.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+                colliderVent.gameObject.SetActive(false);
+                CanviarEstat(NORMAL);
+            }
+            else //Si esta en estat normal, activa el collider de vent i li passa la direccio per parametre. Mou al collider al costat corresponent
+            {
+                CanviarEstat(VENT);
+                colliderVent.gameObject.SetActive(true);
+                colliderVent.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+                colliderVent.gameObject.GetComponent<Vent>().direccioVent = dir;
 
-            if (costat == "OEST")
-            {
-                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
-            }
-            else if (costat == "EST")
-            {
-                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
-            else if (costat == "SUD")
-            {
-                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 90, 0);
+                if (costat == "OEST")
+                {
+                    colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                }
+                else if (costat == "EST")
+                {
+                    colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                }
+                else if (costat == "SUD")
+                {
+                    colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 90, 0);
 
-            }
-            else if (costat == "NORD")
-            {
-                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 270, 0);
-            }
-            else if (costat == "AMUNT")
-            {
-                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 90);
-            }
-            else if (costat == "ABAIX")
-            {
-                colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
+                }
+                else if (costat == "NORD")
+                {
+                    colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 270, 0);
+                }
+                else if (costat == "AMUNT")
+                {
+                    colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 90);
+                }
+                else if (costat == "ABAIX")
+                {
+                    colliderVent.gameObject.transform.localRotation = Quaternion.Euler(0, 0, -90);
+                }
             }
         }
+        
     }
     //------------------------------------------------------CHICLET-------------------------------------------------
     void TransformarChiclet(string costat)
     {
-        //Si esta transformar en chiclet, treu el collider i el posa en estat normal
-        if (estatActual != NORMAL)
+        if(activarChiclet)
         {
-            colliderChiclet.isTrigger = false;
-            CanviarEstat(NORMAL);
-            if(!estatic) rb.isKinematic = false;
-        }
-        else // Si esta en estat normal, activa el collider d'enganchar i el posa en estat chiclet
-        {
-            colliderChiclet.isTrigger = true;
-            CanviarEstat(CHICLET);
-            if(!estatic) rb.isKinematic = true;
+            //Si esta transformar en chiclet, treu el collider i el posa en estat normal
+            if (estatActual != NORMAL)
+            {
+                colliderChiclet.size = new Vector3(0, 0, 0);
+                colliderChiclet.isTrigger = false;
+                CanviarEstat(NORMAL);
+                if(!estatic) rb.isKinematic = false;
+            }
+            else // Si esta en estat normal, activa el collider d'enganchar i el posa en estat chiclet
+            {
+                colliderChiclet.size = new Vector3(1, 1, 1);
+                colliderChiclet.isTrigger = true;
+                CanviarEstat(CHICLET);
+                if(!estatic) rb.isKinematic = true;
+            }
         }
     }
 
     //------------------------------------------------------TERRA-------------------------------------------------
     public void AugmentarMida(string costat)
     {
-        if (estatActual != NORMAL)
+        if(activarTerra)
         {
-            //CanviarEstat(NORMAL);
-            creixent = false;
-            decreixent = true;
-        }
-        else
-        {
-            CanviarEstat(TERRA);
-            scaleActual = transform.localScale;
+            if (estatActual != NORMAL)
+            {
+                //CanviarEstat(NORMAL);
+                creixent = false;
+                decreixent = true;
+            }
+            else
+            {
+                CanviarEstat(TERRA);
+                scaleActual = transform.localScale;
 
-            decreixent = false;
+                decreixent = false;
 
-            if (costat == "OEST")
-            {
-                float newPos = transform.localPosition.x - (midaCreixer/2);
-                novaPos = new Vector3(newPos, transform.localPosition.y, transform.localPosition.z);
-                nouScale = new Vector3(transform.localScale.x + midaCreixer, transform.localScale.y, transform.localScale.z);
+                if (costat == "OEST")
+                {
+                    float newPos = transform.localPosition.x - (midaCreixer/2);
+                    novaPos = new Vector3(newPos, transform.localPosition.y, transform.localPosition.z);
+                    nouScale = new Vector3(transform.localScale.x + midaCreixer, transform.localScale.y, transform.localScale.z);
+                }
+                else if (costat == "EST")
+                {
+                    float newPos = transform.localPosition.x + (midaCreixer / 2);
+                    novaPos = new Vector3(newPos, transform.localPosition.y, transform.localPosition.z);
+                    nouScale = new Vector3(transform.localScale.x + midaCreixer, transform.localScale.y, transform.localScale.z);
+                }
+                else if (costat == "SUD")
+                {
+                    float newPos = transform.localPosition.z - (midaCreixer / 2);
+                    novaPos = new Vector3(transform.localPosition.x, transform.localPosition.y, newPos);
+                    nouScale = new Vector3(transform.localScale.x , transform.localScale.y, transform.localScale.z + midaCreixer);
+                }
+                else if (costat == "NORD")
+                {
+                    float newPos = transform.localPosition.z + (midaCreixer / 2);
+                    novaPos = new Vector3(transform.localPosition.x, transform.localPosition.y, newPos);
+                    nouScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z + midaCreixer);
+                }
+                else if (costat == "AMUNT")
+                {
+                    float newPos = transform.localPosition.y + (midaCreixer / 2);
+                    novaPos = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
+                    nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z);
+                }
+                else if (costat == "ABAIX")
+                {
+                    float newPos = transform.localPosition.y + (midaCreixer / 2);
+                    novaPos = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
+                    nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z);
+                }
+                creixent = true;
             }
-            else if (costat == "EST")
-            {
-                float newPos = transform.localPosition.x + (midaCreixer / 2);
-                novaPos = new Vector3(newPos, transform.localPosition.y, transform.localPosition.z);
-                nouScale = new Vector3(transform.localScale.x + midaCreixer, transform.localScale.y, transform.localScale.z);
-            }
-            else if (costat == "SUD")
-            {
-                float newPos = transform.localPosition.z - (midaCreixer / 2);
-                novaPos = new Vector3(transform.localPosition.x, transform.localPosition.y, newPos);
-                nouScale = new Vector3(transform.localScale.x , transform.localScale.y, transform.localScale.z + midaCreixer);
-            }
-            else if (costat == "NORD")
-            {
-                float newPos = transform.localPosition.z + (midaCreixer / 2);
-                novaPos = new Vector3(transform.localPosition.x, transform.localPosition.y, newPos);
-                nouScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z + midaCreixer);
-            }
-            else if (costat == "AMUNT")
-            {
-                float newPos = transform.localPosition.y + (midaCreixer / 2);
-                novaPos = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
-                nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z);
-            }
-            else if (costat == "ABAIX")
-            {
-                float newPos = transform.localPosition.y + (midaCreixer / 2);
-                novaPos = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
-                nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z);
-            }
-            creixent = true;
         }
     }
 

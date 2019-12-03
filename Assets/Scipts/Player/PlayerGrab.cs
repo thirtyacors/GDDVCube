@@ -53,7 +53,7 @@ public class PlayerGrab : MonoBehaviour
             else // si té un fill el deixa anar
             {
                 collided = this.gameObject.transform.GetChild(0).gameObject;
-                collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                collided.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 collided.GetComponent<Rigidbody>().useGravity = true;
                 collided.GetComponent<Rigidbody>().isKinematic = false;
                 collided.transform.parent = null;
