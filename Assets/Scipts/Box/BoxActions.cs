@@ -99,7 +99,7 @@ public class BoxActions : MonoBehaviour
     }
     
     //------------------------------------------------------VENT-------------------------------------------------
-    void AplicarVent(string costat, Vector3 dir)
+    public void AplicarVent(string costat, Vector3 dir)
     {
         if(activarVent)
         {
@@ -147,7 +147,7 @@ public class BoxActions : MonoBehaviour
         
     }
     //------------------------------------------------------CHICLET-------------------------------------------------
-    void TransformarChiclet(string costat)
+    public void TransformarChiclet(string costat)
     {
         if(activarChiclet)
         {

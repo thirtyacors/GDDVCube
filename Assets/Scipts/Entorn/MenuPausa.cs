@@ -18,7 +18,7 @@ public class MenuPausa: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) { ActivarMenuPausa(); }
+        if (Input.GetKeyDown(KeyCode.Escape)) { ActivarMenuPausa(); }
     }
 
     public void SeguentEscena()
