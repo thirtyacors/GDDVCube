@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Nivell_Chiclet_Vent.unity
     guid: 1cdd24f6aa27de042aa37212244b09a3
+  - enabled: 1
+    path: Assets/Scenes/Final.unity
+    guid: 41c0d063b2830d74aaf1b70a0a77a1f5
   m_configObjects: {}

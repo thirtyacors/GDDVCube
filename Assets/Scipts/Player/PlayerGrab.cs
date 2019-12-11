@@ -6,11 +6,13 @@ public class PlayerGrab : MonoBehaviour
 {
     private bool child;
     private GameObject collided;
+    private BoxCollider colliderCubAgafat;
     // Start is called before the first frame update
     void Start()
     {
         child = false;
         collided = null;
+        colliderCubAgafat = transform.parent.parent.gameObject.GetComponent<BoxCollider>();
     }
 
     /*
@@ -39,6 +41,10 @@ public class PlayerGrab : MonoBehaviour
             {
                 if (collided != null  && collided.GetComponent<BoxActions>().EsNormal())
                 {
+                    colliderCubAgafat.enabled = true;
+                    Physics.IgnoreCollision(colliderCubAgafat, collided.GetComponent<BoxCollider>(), true);
+                    Physics.IgnoreCollision(colliderCubAgafat, collided.transform.GetChild(0).GetComponent<BoxCollider>(), true);
+
                     collided.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                     collided.GetComponent<Rigidbody>().useGravity = false;
                     collided.GetComponent<Rigidbody>().isKinematic = true;
@@ -52,6 +58,11 @@ public class PlayerGrab : MonoBehaviour
             }
             else // si té un fill el deixa anar
             {
+                print("DEIXAR");
+                colliderCubAgafat.enabled = false;
+                Physics.IgnoreCollision(colliderCubAgafat, collided.GetComponent<BoxCollider>(), false);
+                Physics.IgnoreCollision(colliderCubAgafat, collided.transform.GetChild(0).GetComponent<BoxCollider>(), false);
+
                 collided = this.gameObject.transform.GetChild(0).gameObject;
                 collided.GetComponent<Rigidbody>().constraints =  RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 collided.GetComponent<Rigidbody>().useGravity = true;
@@ -78,11 +89,15 @@ public class PlayerGrab : MonoBehaviour
     
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.tag == "Grabable" || collider.gameObject.tag == "CubParet")
+        if (collider.gameObject == collided)
         {
+            colliderCubAgafat.enabled = false;
+            Physics.IgnoreCollision(colliderCubAgafat, collided.GetComponent<BoxCollider>(), false);
+            Physics.IgnoreCollision(colliderCubAgafat, collided.transform.GetChild(0).GetComponent<BoxCollider>(), false);
+
             collided = null;
             collider.GetComponent<BoxActions>().Agafar(false);
-            if(collider.gameObject.GetComponent<BoxActions>().estatActual == 1)child = false;
+            child = false;
         }
     }
     
