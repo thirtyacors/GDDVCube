@@ -7,12 +7,14 @@ public class PlayerGrab : MonoBehaviour
     private bool child;
     private GameObject collided;
     private BoxCollider colliderCubAgafat;
+    private SphereCollider checkCub;
     // Start is called before the first frame update
     void Start()
     {
         child = false;
         collided = null;
         colliderCubAgafat = transform.parent.parent.gameObject.GetComponent<BoxCollider>();
+        checkCub = GetComponent<SphereCollider>();
     }
 
     /*
@@ -52,6 +54,8 @@ public class PlayerGrab : MonoBehaviour
                     collided.transform.localPosition = Vector3.zero;
                     collided.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
+                    checkCub.radius = 0;
+
                     collided.GetComponent<BoxActions>().Agafar(true);
                     child = true;
                 }
@@ -69,6 +73,8 @@ public class PlayerGrab : MonoBehaviour
                 collided.GetComponent<Rigidbody>().isKinematic = false;
                 collided.transform.parent = null;
                 collided.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+                checkCub.radius = 0.5f;
 
                 collided.GetComponent<BoxActions>().Agafar(false);
 

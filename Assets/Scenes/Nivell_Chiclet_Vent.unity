@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -363,6 +363,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7269214664510837589, guid: eedfca8d6a4197b478d3b6f11af7ad10,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6111952506298212456, guid: eedfca8d6a4197b478d3b6f11af7ad10,
         type: 3}
       propertyPath: activarTerra
@@ -376,11 +381,6 @@ PrefabInstance:
     - target: {fileID: 6111952506298212456, guid: eedfca8d6a4197b478d3b6f11af7ad10,
         type: 3}
       propertyPath: activarVent
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7269214664510837589, guid: eedfca8d6a4197b478d3b6f11af7ad10,
-        type: 3}
-      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 283054543, guid: eedfca8d6a4197b478d3b6f11af7ad10, type: 3}
@@ -468,7 +468,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0.1484375, z: 0.03125, w: -0.03125}
+  m_BoundingSphereOverride: {x: -31538238, y: 3.4512557e+18, z: 8.831149e-26, w: 1.215e-42}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2240,6 +2240,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3.9922
       objectReference: {fileID: 0}
+    - target: {fileID: 7269214664510837589, guid: eedfca8d6a4197b478d3b6f11af7ad10,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6111952506298212460, guid: eedfca8d6a4197b478d3b6f11af7ad10,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2249,11 +2254,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsKinematic
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7269214664510837589, guid: eedfca8d6a4197b478d3b6f11af7ad10,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eedfca8d6a4197b478d3b6f11af7ad10, type: 3}
@@ -2856,6 +2856,11 @@ PrefabInstance:
     - target: {fileID: 4453368868239146069, guid: 1d437e228a7232449972fea83d7106aa,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453368868884816065, guid: 1d437e228a7232449972fea83d7106aa,
+        type: 3}
+      propertyPath: nextScene
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

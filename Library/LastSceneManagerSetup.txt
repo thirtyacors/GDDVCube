@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Nivell_Chiclet.unity
+- path: Assets/Scenes/Nivell_Creixer_Chiclet.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
