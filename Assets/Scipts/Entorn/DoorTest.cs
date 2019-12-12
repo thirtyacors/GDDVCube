@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class DoorTest : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DoorTest : MonoBehaviour
 
     Vector3 closedPosition;
     Vector3 openedPosition;
+    AudioSource so;
 
     public bool Pont;
     [SerializeField] float alcadaObert = 7;
@@ -18,6 +20,7 @@ public class DoorTest : MonoBehaviour
 
     private void Start()
     {
+        if(!Pont)so = GetComponent<AudioSource>();
         door = this.transform;
         closedPosition = door.position;
         if(Pont)openedPosition = door.position + new Vector3(alcadaObert,0,0);
@@ -53,15 +56,16 @@ public class DoorTest : MonoBehaviour
             CloseDoor();
         }
     }
-
     public void CloseDoor()
     {
         open = false;
+        if (!Pont) so.Play();
     }
 
     public void OpenDoor()
     {
         open = true;
+        if (!Pont) so.Play();
 
     }
 }

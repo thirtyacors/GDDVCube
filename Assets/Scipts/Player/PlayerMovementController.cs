@@ -11,10 +11,14 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float raycastDistance;
 
     private Rigidbody rb;
+    private AudioSource passos;
+    private bool caminant;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        passos = GetComponent<AudioSource>();
+        caminant = false;
     }
     
     private void Update() 
@@ -38,6 +42,13 @@ public class PlayerMovementController : MonoBehaviour
         Vector3 newPosition = rb.position + rb.transform.TransformDirection(movement);
 
         rb.MovePosition(newPosition);
+
+        if((hAxis != 0 || vAxis!= 0) && !passos.isPlaying && IsGrounded())
+        {
+            passos.volume = Random.Range(0.8f, 1);
+            passos.pitch = Random.Range(0.8f, 1.1f);
+            passos.Play();
+        }
     }
 
     //Salta si esta tocant a terra

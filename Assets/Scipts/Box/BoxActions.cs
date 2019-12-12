@@ -15,6 +15,7 @@ public class BoxActions : MonoBehaviour
 
     private Vector3 posActual, novaPos, scaleActual, nouScale;
     [SerializeField] Material[] material;
+    [SerializeField] AudioClip [] sons;
     Renderer rend;
     Rigidbody rb;
 
@@ -28,11 +29,13 @@ public class BoxActions : MonoBehaviour
     [SerializeField] float velocitatDecreixer = 8;
 
     private bool agafat, creixent, decreixent, estatic;
-    
+
+    private AudioSource so;
 
     private void Start()
     {
         rend = GetComponent<Renderer>();
+        so = GetComponent<AudioSource>();
 
         rend.sharedMaterial = material[0];
         estatActual = NORMAL;
@@ -106,13 +109,21 @@ public class BoxActions : MonoBehaviour
             //Si esta transformar en vent, treu el collider i el posa en estat normal
             if (estatActual != NORMAL)
             {
+                so.Stop();
+                so.loop = false;
                 colliderVent.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
                 colliderVent.gameObject.SetActive(false);
                 CanviarEstat(NORMAL);
             }
             else //Si esta en estat normal, activa el collider de vent i li passa la direccio per parametre. Mou al collider al costat corresponent
             {
+                
                 CanviarEstat(VENT);
+
+                so.clip = sons[VENT];
+                so.loop = true;
+                so.Play();
+
                 colliderVent.gameObject.SetActive(true);
                 colliderVent.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                 colliderVent.gameObject.GetComponent<Vent>().direccioVent = dir;
@@ -151,6 +162,8 @@ public class BoxActions : MonoBehaviour
     {
         if(activarChiclet)
         {
+            so.clip = sons[CHICLET];
+            so.Play();
             //Si esta transformar en chiclet, treu el collider i el posa en estat normal
             if (estatActual != NORMAL)
             {
@@ -174,6 +187,9 @@ public class BoxActions : MonoBehaviour
     {
         if(activarTerra)
         {
+            so.clip = sons[TERRA];
+            so.Play();
+
             if (estatActual != NORMAL)
             {
                 //CanviarEstat(NORMAL);
