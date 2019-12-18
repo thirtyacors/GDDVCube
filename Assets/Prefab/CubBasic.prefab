@@ -4932,7 +4932,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b80e7fd99bf647848b4560471f0be710, type: 2}
+  - {fileID: 2100000, guid: 6adde7b093fc0c54da458b67a43614e8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4999,10 +4999,11 @@ MonoBehaviour:
   activarChiclet: 0
   activarVent: 0
   material:
-  - {fileID: 2100000, guid: b80e7fd99bf647848b4560471f0be710, type: 2}
+  - {fileID: 2100000, guid: 6adde7b093fc0c54da458b67a43614e8, type: 2}
   - {fileID: 2100000, guid: e79107ea51ca45944a42c7be238891bc, type: 2}
   - {fileID: 2100000, guid: 4cef44efeb0f6644faff6da032fd2d61, type: 2}
   - {fileID: 2100000, guid: f7fa24f496fae364d9745b31c5fbb786, type: 2}
+  sons: []
   colliderChiclet: {fileID: 6669490347047037105}
   colliderVent: {fileID: 4066673615717214772}
   midaCreixer: 1

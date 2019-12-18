@@ -48,8 +48,6 @@ public class PlayerCam : MonoBehaviour
 
         courrentLookingPos += smoothedVelocity;
 
-        // myObject.GetComponent<MyScript>().MyFunction();
-        print(grabCollider);
         if (grabCollider.GetComponent<PlayerGrab>().SomethingGrabbed() && courrentLookingPos.y < -20) courrentLookingPos.y = -20;
         else if (courrentLookingPos.y > 90) courrentLookingPos.y = 90;
         else if (courrentLookingPos.y < -90) courrentLookingPos.y = -90;
