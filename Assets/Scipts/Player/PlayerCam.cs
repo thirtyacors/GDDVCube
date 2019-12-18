@@ -8,9 +8,10 @@ public class PlayerCam : MonoBehaviour
     [SerializeField] private float lookSensitivity;
     [SerializeField] private float smoothing;
 
-    [SerializeField] Image imatgePoder;
+    //[SerializeField] Image imatgePoder;
     [SerializeField] Color[] colorsPoders;
 
+    private GameObject grabCollider;
 
     GameObject player;
     Vector2 smoothedVelocity;
@@ -19,7 +20,9 @@ public class PlayerCam : MonoBehaviour
     int poderActual;
 
     private void Start() 
-    {   
+    {
+        grabCollider = transform.Find("Grab Collider").gameObject;
+
         player = transform.parent.gameObject;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -44,6 +47,12 @@ public class PlayerCam : MonoBehaviour
         smoothedVelocity.y = Mathf.Lerp(smoothedVelocity.y, inputValues.y, 1f / smoothing);
 
         courrentLookingPos += smoothedVelocity;
+
+        // myObject.GetComponent<MyScript>().MyFunction();
+        print(grabCollider);
+        if (grabCollider.GetComponent<PlayerGrab>().SomethingGrabbed() && courrentLookingPos.y < -20) courrentLookingPos.y = -20;
+        else if (courrentLookingPos.y > 90) courrentLookingPos.y = 90;
+        else if (courrentLookingPos.y < -90) courrentLookingPos.y = -90;
 
         transform.localRotation = Quaternion.AngleAxis(-courrentLookingPos.y, Vector3.right);
         player.transform.localRotation = Quaternion.AngleAxis(courrentLookingPos.x, player.transform.up);
@@ -111,6 +120,6 @@ public class PlayerCam : MonoBehaviour
     private void CanviarPoder(int poder)
     {
         poderActual = poder;
-        imatgePoder.color = colorsPoders[poder];
+        //imatgePoder.color = colorsPoders[poder];
     }
 }

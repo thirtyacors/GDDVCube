@@ -62,7 +62,7 @@ public class PlayerGrab : MonoBehaviour
             }
             else // si té un fill el deixa anar
             {
-                print("DEIXAR");
+                //print("DEIXAR");
                 colliderCubAgafat.enabled = false;
                 Physics.IgnoreCollision(colliderCubAgafat, collided.GetComponent<BoxCollider>(), false);
                 Physics.IgnoreCollision(colliderCubAgafat, collided.transform.GetChild(0).GetComponent<BoxCollider>(), false);
@@ -106,5 +106,9 @@ public class PlayerGrab : MonoBehaviour
             child = false;
         }
     }
-    
+
+    public bool SomethingGrabbed()
+    {
+        return transform.childCount != 0;
+    }
 }
