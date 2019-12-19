@@ -13,6 +13,8 @@ public class BoxActions : MonoBehaviour
     public bool activarChiclet = true;
     public bool activarVent = true;
 
+    private bool enTerra = true;
+
     private Vector3 posActual, novaPos, scaleActual, nouScale;
     [SerializeField] Material[] material;
     [SerializeField] AudioClip [] sons;
@@ -65,6 +67,9 @@ public class BoxActions : MonoBehaviour
                 CanviarEstat(NORMAL);
             }
         }
+
+        if (estatActual == CHICLET && enTerra) rb.isKinematic = true;
+        else if (estatActual == CHICLET && !enTerra) rb.isKinematic = false; 
     }
 
     public bool EsNormal(){return estatActual == NORMAL;}
@@ -261,4 +266,22 @@ public class BoxActions : MonoBehaviour
 
         return direccio;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Terra")
+        {
+            enTerra = true; 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Terra")
+        {
+            enTerra = false; 
+        }
+    }
+
+
 }
