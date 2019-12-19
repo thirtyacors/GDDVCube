@@ -282,8 +282,8 @@ Camera:
   m_GameObject: {fileID: 4932331318404182054}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -338,7 +338,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookSensitivity: 2
   smoothing: 2
-  imatgePoder: {fileID: 0}
   colorsPoders:
   - {r: 0.74509805, g: 0.40000004, b: 0.227451, a: 1}
   - {r: 0.9339623, g: 0.383277, b: 0.8115607, a: 1}
@@ -423,6 +422,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4932331318404182073}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: b76220bff0adee941b002e32c69ccdf9,
+        type: 3}
+      propertyPath: m_Name
+      value: Pistola
+      objectReference: {fileID: 0}
     - target: {fileID: -6777876680820859904, guid: b76220bff0adee941b002e32c69ccdf9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -528,11 +532,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f544b462c057e634e867101e578817f8, type: 2}
-    - target: {fileID: -927199367670048503, guid: b76220bff0adee941b002e32c69ccdf9,
-        type: 3}
-      propertyPath: m_Name
-      value: Pistola
-      objectReference: {fileID: 0}
     - target: {fileID: 361472161792814594, guid: b76220bff0adee941b002e32c69ccdf9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
