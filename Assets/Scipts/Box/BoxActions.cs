@@ -30,6 +30,9 @@ public class BoxActions : MonoBehaviour
     [SerializeField] float velocitatCreixer = 8;
     [SerializeField] float velocitatDecreixer = 8;
 
+    [SerializeField] float min_pos = -20;
+    [SerializeField] Vector3 reaparicio = new Vector3(0,0,0);
+
     private bool agafat, creixent, decreixent, estatic;
 
     private AudioSource so;
@@ -69,7 +72,14 @@ public class BoxActions : MonoBehaviour
         }
 
         if (estatActual == CHICLET && enTerra) rb.isKinematic = true;
-        else if (estatActual == CHICLET && !enTerra) rb.isKinematic = false; 
+        else if (estatActual == CHICLET && !enTerra) rb.isKinematic = false;
+
+
+        if (transform.position.y <= min_pos)
+        {
+            rb.velocity = new Vector3(0,0,0);
+            transform.position = reaparicio;
+        }
     }
 
     public bool EsNormal(){return estatActual == NORMAL;}
