@@ -420,7 +420,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.36e-42, y: 6e-44, z: 1, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1530,7 +1530,7 @@ PrefabInstance:
     - target: {fileID: 4453368868884816065, guid: 1d437e228a7232449972fea83d7106aa,
         type: 3}
       propertyPath: nextScene
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d437e228a7232449972fea83d7106aa, type: 3}
