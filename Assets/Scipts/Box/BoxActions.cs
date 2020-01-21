@@ -26,7 +26,7 @@ public class BoxActions : MonoBehaviour
     //Collider per empuchar
     [SerializeField] BoxCollider colliderVent;
 
-    [SerializeField] float midaCreixer = 1;
+    private float midaCreixer;
     [SerializeField] float velocitatCreixer = 8;
     [SerializeField] float velocitatDecreixer = 8;
 
@@ -46,14 +46,20 @@ public class BoxActions : MonoBehaviour
         estatActual = NORMAL;
         rb = GetComponent<Rigidbody>();
         agafat = false;
+        midaCreixer = transform.localScale.x;
         creixent = decreixent = false;
+        posActual = transform.localPosition;
 
-        if (rb.isKinematic == true)  estatic = true;
+        if (rb.isKinematic == true) 
+        {
+            estatic = true;
+        }
+            
     }
 
     private void Update()
     {
-        posActual = transform.localPosition;
+        if(!estatic)posActual = transform.localPosition;
         if (creixent)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, novaPos, Time.deltaTime* velocitatCreixer);
@@ -234,7 +240,7 @@ public class BoxActions : MonoBehaviour
                 {
                     float newPos = transform.localPosition.z - (midaCreixer / 2);
                     novaPos = new Vector3(transform.localPosition.x, transform.localPosition.y, newPos);
-                    nouScale = new Vector3(transform.localScale.x , transform.localScale.y, transform.localScale.z + midaCreixer);
+                    nouScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z + midaCreixer);
                 }
                 else if (costat == "NORD")
                 {
@@ -250,7 +256,7 @@ public class BoxActions : MonoBehaviour
                 }
                 else if (costat == "ABAIX")
                 {
-                    float newPos = transform.localPosition.y + (midaCreixer / 2);
+                    float newPos = transform.localPosition.y - (midaCreixer / 2);
                     novaPos = new Vector3(transform.localPosition.x, newPos, transform.localPosition.z);
                     nouScale = new Vector3(transform.localScale.x, transform.localScale.y + midaCreixer, transform.localScale.z);
                 }
