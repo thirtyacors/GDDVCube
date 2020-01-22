@@ -12,7 +12,7 @@ public class MenuPrincipal : MonoBehaviour
     }
     public void Jugar()
     {
-        SceneManager.LoadScene("Nivell_Creixer");
+        SceneManager.LoadScene(PlayerPrefs.GetInt("level",1));
     }
 
     public void Sortir()
