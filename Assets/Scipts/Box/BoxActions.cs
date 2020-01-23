@@ -53,8 +53,7 @@ public class BoxActions : MonoBehaviour
         if (rb.isKinematic == true) 
         {
             estatic = true;
-        }
-            
+        } 
     }
 
     private void Update()
