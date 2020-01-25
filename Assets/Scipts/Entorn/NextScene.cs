@@ -11,8 +11,17 @@ public class NextScene : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerPrefs.SetInt("level", SceneManager.GetActiveScene().buildIndex+1);
-            SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+            if(SceneManager.GetActiveScene().buildIndex + 1 > 8)
+            {
+                PlayerPrefs.SetInt("level", 0);
+                SceneManager.LoadScene (0);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("level", SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
+            }
+                
         }
     }
 
